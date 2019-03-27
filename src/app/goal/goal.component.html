@@ -1,0 +1,40 @@
+<ng-progress></ng-progress>
+<h1> My Goals </h1>
+<hr>
+<div class="container">
+    <div class="row">
+        <blockquote class="text-center text-lg">
+            <p>{{quote.quote}}</p>
+            <footer><cite>{{quote.author}}</cite></footer>
+        </blockquote>
+    </div>
+</div>
+<div class="container">    
+  <div class="row">
+  <div class="col-md-6">
+  <div class="row">
+      <app-goal-form (addGoal)="addNewGoal($event)"></app-goal-form>
+  </div>
+</div>
+
+
+
+<div class="col-md-6">
+  <div *ngFor='let goal of goals;let i = index'>
+  
+    <h5 id="{{i}}" appStrikethrough>{{goal.name}} due on {{goal.completeDate|date|uppercase}}</h5>
+    <button class="btn btn-primary" (click)=goToUrl(goal.id)>View Details</button>
+    <!-- <button class="btn btn-success btn-sm" (click)='toogleDetails(i)'>Toogle Details</button> -->
+    <button class="btn btn-danger" (click) = 'deleteGoal(i)'> Delete Goal </button>
+  <br>
+
+</div>
+<!-- <div class="row" *ngIf="goal.showDescription">
+    <app-goal-details [goal]='goal' (isComplete)='deleteGoal($event,i)'></app-goal-details>
+</div> -->
+</div>
+
+
+</div>
+</div>
+<p *ngIf='goals.length > 5'>Your goals are more than five</p>
